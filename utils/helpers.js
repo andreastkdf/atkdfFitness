@@ -125,5 +125,5 @@ export function getMetricMetaInfo(metric) {
     }
   }
 
-  return typeof metric === "undefinied" ? info : info[metric]
+  return typeof metric === "undefined" ? info : info[metric]
 }
