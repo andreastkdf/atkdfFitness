@@ -6,6 +6,7 @@ import AtkdfSteppers from "./AtkdfSteppers"
 import DateHeader from "./DateHeader"
 import { Ionicons } from "@expo/vector-icons"
 import TextButton from "./TextButton"
+import { submitEntry, removeEntry } from "../utils/api"
 
 const SubmitButton = ({ onPress }) => {
   return (
@@ -71,7 +72,7 @@ export default class AddEntry extends Component {
 
     // TODO: Navigate to home
 
-    // TODO: Save info to DB
+    submitEntry({ key, entry })
 
     // TODO: Clear local notification
   }
@@ -83,7 +84,7 @@ export default class AddEntry extends Component {
 
     // TODO: Route to Home
 
-    // TODO: Update DB
+    removeEntry(key)
   }
 
   render() {
