@@ -1,9 +1,17 @@
 import React, { Component } from "react"
-import { View, Text } from "react-native"
-import { getMetricMetaInfo } from "../utils/helpers"
+import { View, TouchableOpacity, Text } from "react-native"
+import { getMetricMetaInfo, timeToString } from "../utils/helpers"
 import AtkdfSlider from "./AtkdfSlider"
 import AtkdfSteppers from "./AtkdfSteppers"
 import DateHeader from "./DateHeader"
+
+const SubmitButton = ({ onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Text>SUBMIT</Text>
+    </TouchableOpacity>
+  )
+}
 
 export default class AddEntry extends Component {
   state = {
@@ -44,6 +52,28 @@ export default class AddEntry extends Component {
     }))
   }
 
+  submit = () => {
+    const key = timeToString()
+    const entry = this.state
+
+    // TODO: Update Redux
+
+    // Reset our local state
+    this.setState(() => ({
+      run: 0,
+      bike: 0,
+      swim: 0,
+      sleep: 0,
+      eat: 0
+    }))
+
+    // TODO: Navigate to home
+
+    // TODO: Save info to db
+
+    // TODO: Clear local notification
+  }
+
   render() {
     const metaInfo = getMetricMetaInfo()
 
@@ -74,6 +104,7 @@ export default class AddEntry extends Component {
             </View>
           )
         })}
+        <SubmitButton onPress={this.submit} />
       </View>
     )
   }
