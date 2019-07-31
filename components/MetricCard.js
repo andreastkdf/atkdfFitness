@@ -9,9 +9,12 @@ const MetricCard = ({ date, metrics }) => {
     <View>
       {date && <DateHeader date={date} />}
       {Object.keys(metrics).map(metric => {
-        const { getIcon, displayName, unit, background } = getMetricMetaInfo(
-          metric
-        )
+        const {
+          getIcon,
+          displayName,
+          unit,
+          backgroundColor
+        } = getMetricMetaInfo(metric)
 
         return (
           <View style={styles.metric} key={metric}>
