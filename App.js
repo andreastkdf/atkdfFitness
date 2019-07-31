@@ -1,11 +1,12 @@
 import React from "react"
-import { View, Platform, StatusBar } from "react-native"
+import { View, Platform, StatusBar, Dimensions } from "react-native"
 import AddEntry from "./components/AddEntry"
 import { createStore } from "redux"
 import { Provider } from "react-redux"
 import reducer from "./reducers"
 import History from "./components/History"
 import {
+  createStackNavigator,
   createMaterialTopTabNavigator,
   createAppContainer,
   SafeAreaView
@@ -13,6 +14,7 @@ import {
 import { purple, white } from "./utils/colors"
 import { FontAwesome, Ionicons } from "@expo/vector-icons"
 import Constants from "expo-constants"
+import EntryDetail from "./components/EntryDetail"
 
 const AtkdfStatusBar = ({ backgroundColor, ...props }) => {
   return (
@@ -66,7 +68,26 @@ const Tabs = createMaterialTopTabNavigator(
   }
 )
 
-const TabsContainer = createAppContainer(Tabs)
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      },
+      headerTitleStyle: { width: Dimensions.get("window").width }
+    }
+  }
+})
+
+const MainContainer = createAppContainer(MainNavigator)
 
 export default class App extends React.Component {
   render() {
@@ -74,7 +95,7 @@ export default class App extends React.Component {
       <Provider store={createStore(reducer)}>
         <View style={{ flex: 1 }}>
           <AtkdfStatusBar backgroundColor={purple} barStyle="light-content" />
-          <TabsContainer />
+          <MainContainer />
         </View>
       </Provider>
     )
