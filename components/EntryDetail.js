@@ -16,8 +16,6 @@ class EntryDetail extends Component {
     const month = entryId.slice(5, 7)
     const day = entryId.slice(8)
 
-    console.log(year)
-
     return {
       title: `${day}/${month}/${year}`
     }
