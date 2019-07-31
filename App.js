@@ -7,17 +7,20 @@ import reducer from "./reducers"
 import History from "./components/History"
 import {
   createMaterialTopTabNavigator,
-  createAppContainer
+  createAppContainer,
+  SafeAreaView
 } from "react-navigation"
 import { purple, white } from "./utils/colors"
 import { FontAwesome, Ionicons } from "@expo/vector-icons"
-import { Constants } from "expo"
+import Constants from "expo-constants"
 
 const AtkdfStatusBar = ({ backgroundColor, ...props }) => {
   return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+    <SafeAreaView
+      style={{ backgroundColor, height: Constants.statusBarHeight }}
+    >
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
+    </SafeAreaView>
   )
 }
 
