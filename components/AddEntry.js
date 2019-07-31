@@ -20,6 +20,7 @@ import { submitEntry, removeEntry } from "../utils/api"
 import { connect } from "react-redux"
 import { addEntry } from "../actions"
 import { white, purple } from "../utils/colors"
+import { NavigationActions } from "react-navigation"
 
 const SubmitButton = ({ onPress }) => {
   return (
@@ -98,7 +99,7 @@ class AddEntry extends Component {
 
     submitEntry({ key, entry })
 
-    // TODO: Clear local notification
+    this.toHome()
   }
 
   reset = () => {
@@ -110,9 +111,17 @@ class AddEntry extends Component {
       })
     )
 
-    // TODO: Route to Home
+    this.toHome()
 
     removeEntry(key)
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: "AddEntry"
+      })
+    )
   }
 
   render() {
