@@ -9,7 +9,9 @@ import {
 import {
   getMetricMetaInfo,
   timeToString,
-  getDailyReminderValue
+  getDailyReminderValue,
+  clearLocalNotification,
+  setLocalNotification
 } from "../utils/helpers"
 import AtkdfSlider from "./AtkdfSlider"
 import AtkdfSteppers from "./AtkdfSteppers"
@@ -94,12 +96,11 @@ class AddEntry extends Component {
       sleep: 0,
       eat: 0
     }))
-
-    // TODO: Navigate to home
+    this.toHome()
 
     submitEntry({ key, entry })
 
-    this.toHome()
+    clearLocalNotification().then(setLocalNotification)
   }
 
   reset = () => {

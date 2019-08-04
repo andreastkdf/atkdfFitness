@@ -6,7 +6,8 @@ import {
   MaterialCommunityIcons
 } from "@expo/vector-icons"
 import { white, red, orange, blue, lightPurp, pink } from "./colors"
-import { Notifications, Permission } from "expo"
+import { Notifications } from "expo"
+import { Permissions } from "expo-permissions"
 
 const NOTIFICATION_KEY = "AtkdfFitness:notifications"
 
@@ -176,7 +177,7 @@ export const setLocalNotification = () => {
     .then(JSON.parse)
     .then(data => {
       if (data === null) {
-        Permission.askAsync(Permission.NOTIFICATIONS).then(({ status }) => {
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === "granted") {
             Notifications.cancelAllScheduledNotificationsAsync()
 
